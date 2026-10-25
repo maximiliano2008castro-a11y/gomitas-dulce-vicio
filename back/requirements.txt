@@ -1,0 +1,7 @@
+fastapi[standard]>=0.115
+sqlmodel>=0.0.22
+pyjwt>=2.9
+pwdlib[argon2]>=0.2
+pydantic-settings>=2.5
+strawberry-graphql[fastapi]>=0.250
+pytest>=8

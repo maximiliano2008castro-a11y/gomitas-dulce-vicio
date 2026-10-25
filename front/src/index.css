@@ -1,0 +1,61 @@
+:root {
+  --text: #4b4453;
+  --text-h: #201a2b;
+  --bg: #fdfbff;
+  --border: #e5e0ec;
+  --accent: #d6336c;
+  --accent-dark: #a61e4d;
+  --success: #22c55e;
+  --danger: #e03131;
+  --muted: #898781;
+
+  /* Estados (good / warning / serious / critical): siempre con icono + texto */
+  --st-good: #0ca30c;
+  --st-warning: #fab219;
+  --st-serious: #ec835a;
+  --st-critical: #d03b3b;
+  --st-neutral: #b4b2a9;
+
+  /* Graficas */
+  --serie-1: #2a78d6;
+  --grid: #e1e0d9;
+  --eje: #c3c2b7;
+
+  font: 16px/1.5 system-ui, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  color: var(--text-h);
+  margin: 0 0 8px;
+}
+
+p {
+  margin: 0 0 8px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}

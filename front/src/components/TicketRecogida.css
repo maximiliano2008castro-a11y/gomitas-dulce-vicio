@@ -1,0 +1,62 @@
+.ticket {
+  --corte: 14px;
+  margin: 16px 0;
+  max-width: 420px;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(166, 30, 77, 0.14);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+.ticket__arriba {
+  padding: 20px 20px 16px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: white;
+}
+.ticket__etiqueta {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  font-weight: 600;
+}
+.ticket__codigo {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+.ticket__codigo span {
+  width: 42px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font: 800 30px/1 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+.ticket__abajo {
+  position: relative;
+  padding: 18px 20px 16px;
+  border-top: 2px dashed var(--border);
+}
+/* Las dos "muescas" del boleto, a los lados de la linea punteada */
+.ticket__abajo::before,
+.ticket__abajo::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--corte) / -2 - 1px);
+  width: var(--corte);
+  height: var(--corte);
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.ticket__abajo::before { left: calc(var(--corte) / -2); }
+.ticket__abajo::after { right: calc(var(--corte) / -2); }
+.ticket__abajo p { margin: 0 0 6px; }
+.ticket__estado { color: var(--accent-dark); font-weight: 600; }
+.ticket--usado { opacity: 0.75; filter: grayscale(0.6); }

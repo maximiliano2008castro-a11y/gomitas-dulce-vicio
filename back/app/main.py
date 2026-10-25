@@ -1,6 +1,7 @@
 # Tutorial FastAPI: "Bigger Applications - Multiple Files".
 # Punto de entrada: crea la app, registra CORS y monta cada router.
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -51,7 +52,14 @@ app.include_router(graphql_router, prefix="/graphql")
 # Las imagenes subidas desde el backoffice se sirven como archivos estaticos.
 app.mount("/uploads", StaticFiles(directory=carpeta_uploads()), name="uploads")
 
+# Version publicada (Dockerfile): el frontend ya compilado esta en front/dist y se sirve
+# desde aqui mismo, asi la tienda, el backoffice y la API comparten una sola direccion.
+# En desarrollo no existe esa carpeta y el frontend corre aparte con "npm run dev".
+CARPETA_FRONT = Path(__file__).resolve().parents[2] / "front" / "dist"
 
-@app.get("/", tags=["salud"])
-def raiz():
-    return {"mensaje": "API de gomitas lista. Documentacion en /docs"}
+if CARPETA_FRONT.is_dir():
+    app.mount("/", StaticFiles(directory=CARPETA_FRONT, html=True), name="front")
+else:
+    @app.get("/", tags=["salud"])
+    def raiz():
+        return {"mensaje": "API de gomitas lista. Documentacion en /docs"}

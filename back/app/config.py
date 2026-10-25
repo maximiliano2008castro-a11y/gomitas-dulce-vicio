@@ -3,6 +3,7 @@
 from functools import lru_cache
 from pathlib import Path
 
+from pydantic import AliasChoices, Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # Carpeta back/, para que .env y la BD se encuentren sin importar desde donde se arranque.
@@ -39,7 +40,11 @@ class Settings(BaseSettings):
     # URL publica (ngrok, deploy...) a la que MP manda las notificaciones. Vacio = sin webhook.
     mp_notification_url: str = ""
     # A donde regresa el comprador despues de pagar en Mercado Pago.
-    frontend_url: str = "http://localhost:5173"
+    # En Render, si no se configura FRONTEND_URL, se usa la direccion publica del servicio.
+    frontend_url: str = Field(
+        default="http://localhost:5173",
+        validation_alias=AliasChoices("FRONTEND_URL", "RENDER_EXTERNAL_URL"),
+    )
     # Las fechas se guardan en UTC; el dashboard agrupa por dia con este desfase
     # (Mexico centro es UTC-6 todo el año desde 2022).
     utc_offset_horas: int = -6

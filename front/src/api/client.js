@@ -3,7 +3,10 @@
 // Si hay sesion, cada peticion lleva "Authorization: Bearer <token>" (OAuth2).
 import { useAuthStore } from "../store/useAuthStore";
 
-export const BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/$/, "");
+// En desarrollo (npm run dev) la API esta en el puerto 8000. Ya publicada, el mismo servidor
+// entrega la pagina y la API, asi que se usa la direccion de la propia pagina.
+const API_POR_DEFECTO = import.meta.env.PROD ? window.location.origin : "http://localhost:8000";
+export const BASE_URL = (import.meta.env.VITE_API_URL || API_POR_DEFECTO).replace(/\/$/, "");
 
 // FastAPI responde los errores como { detail: "..." } o, si falla la validacion,
 // { detail: [{ msg, loc }, ...] }.

@@ -1,0 +1,10 @@
+# Configuracion para publicar en Render (plan gratis) con el Dockerfile de la raiz.
+services:
+  - type: web
+    name: gomitas-dulce-vicio
+    runtime: docker
+    plan: free
+    healthCheckPath: /categorias
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true

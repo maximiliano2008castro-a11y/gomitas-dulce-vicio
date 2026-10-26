@@ -9,6 +9,21 @@ trabajadores confirman en el mostrador que el cliente ya recogio su pedido, todo
 
 > **Para revisarlo rapido:** doble clic en `INICIAR.bat` (instala y abre todo) y `PROBAR.bat` (pruebas). Ver **`COMO-REVISAR.md`**.
 
+## Version publicada
+
+**https://gomitas-dulce-vicio.onrender.com** (tienda, backoffice y API en un solo servidor; documentacion de la API en `/docs` y GraphiQL en `/graphql`).
+
+| Rol | Email | Contrasena |
+|---|---|---|
+| Administrador | `admin@gomitas.com` | `admin12345` |
+| Trabajador | `trabajador@gomitas.com` | `trabajador12345` |
+| Cliente | `cliente@prueba.com` | `cliente12345` |
+
+- Esta en el plan gratis de Render: si nadie la usa por un rato se duerme y la primera visita tarda **unos 50 segundos** en abrir.
+- La base de datos es SQLite dentro del servidor: al reiniciarse vuelve a los datos de ejemplo (los usuarios de arriba siempre existen).
+- Mercado Pago funciona en modo **simulado** (no se cobra nada).
+- Se publica con el `Dockerfile` de la raiz (compila el frontend y lo sirve junto con la API) y `render.yaml`. Cada `git push` a `main` vuelve a publicar.
+
 ## Estructura
 
 ```
